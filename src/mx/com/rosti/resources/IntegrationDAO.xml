@@ -1,0 +1,126 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+    <bean id="RemisionDAO" class="mx.com.rosti.catalogo.RemisionDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+	</bean>
+
+	<bean id="ProductoAcumuladoDAO" class="mx.com.rosti.catalogo.ProductoAcumuladoDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+		<property name="accesoComun" ref="acProductoAcumulado"/>
+	</bean>
+
+    <bean id="ClientesDAO" class="mx.com.rosti.catalogo.ClientesDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+		<property name="accesoComun" ref="acClientes"/>
+	</bean>
+
+    <bean id="UsuarioDAO" class="mx.com.rosti.catalogo.UsuarioDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+		<property name="accesoComun" ref="acUsuario"/>
+	</bean>
+
+	<bean id="UnidadesDAO" class="mx.com.rosti.catalogo.UnidadesDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+		<property name="accesoComun" ref="acUnidades"/>
+	</bean>
+
+	<bean id="TipoProductoDAO" class="mx.com.rosti.catalogo.TipoProductoDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+		<property name="accesoComun" ref="acTipoProducto"/>
+	</bean>
+
+	<bean id="RolesDAO" class="mx.com.rosti.catalogo.RolesDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+		<property name="accesoComun" ref="acRoles"/>
+	</bean>
+
+	<bean id="ProveedorDAO" class="mx.com.rosti.catalogo.ProveedorDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+		<property name="accesoComun" ref="acProveedor"/>
+	</bean>
+
+	<bean id="InventarioDAO" class="mx.com.rosti.catalogo.InventarioDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+		<property name="accesoComun" ref="acInventario"/>
+	</bean>
+
+	<bean id="ProductoDAO" class="mx.com.rosti.catalogo.ProductoDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+		<property name="accesoComun" ref="acProducto"/>
+	</bean>
+
+    <bean id="acClientes" class="mx.com.rosti.bd.AccesoComun">
+		<property name="findAll" value=" select id_cliente, nombre, precio_preferente from clientes order by nombre asc"/>
+		<property name="findUnique" value=" select id_cliente, nombre, precio_preferente from clientes where id_cliente = ?"/>
+		<property name="sqlDelete" value=" delete from clientes where id_cliente = ?"/>
+		<property name="sqlInsert" value=" insert into clientes (id_cliente, nombre, precio_preferente) values (?,?,?) "/>
+		<property name="sqlUpdate" value=" update clientes set nombre = ?, precio_preferente= ?  where id_cliente = ? "/>
+	</bean>
+
+    <bean id="acUsuario" class="mx.com.rosti.bd.AccesoComun">
+		<property name="findAll" value=" select id_usuario, nombre, id_rol, password, correo_electronico, telefono from usuario "/>
+		<property name="findUnique" value=" select id_usuario, nombre, id_rol, password, correo_electronico, telefono from usuario where id_usuario = ?"/>
+		<property name="sqlDelete" value=" delete from usuario where id_usuario = ?"/>
+		<property name="sqlInsert" value=" insert into usuario (id_usuario, nombre, id_rol, password, correo_electronico, telefono) values (?,?,?,?,?,?) "/>
+		<property name="sqlUpdate" value=" update usuario set nombre = ?, id_rol = ?, password = ?, correo_electronico = ?, telefono = ? where id_usuario = ? "/>
+	</bean>
+	
+	<bean id="acUnidades" class="mx.com.rosti.bd.AccesoComun">
+		<property name="findAll" value=" select id_unidad, nombre from unidades "/>
+		<property name="findUnique" value=" select id_unidad, nombre from unidades where id_unidad = ?"/>
+		<property name="sqlDelete" value=" delete from unidades where id_unidad = ?"/>
+		<property name="sqlInsert" value=" insert into unidades (id_unidad, nombre) values (?,?) "/>
+		<property name="sqlUpdate" value=" update unidades set nombre = ? where id_unidad = ? "/>
+	</bean>
+
+
+	<bean id="acTipoProducto" class="mx.com.rosti.bd.AccesoComun">
+		<property name="findAll" value=" select id_tipo_producto, nombre from tipo_producto "/>
+		<property name="findUnique" value=" select id_tipo_producto, nombre from tipo_producto where id_tipo_producto = ?"/>
+		<property name="sqlDelete" value=" delete from tipo_producto where id_tipo_producto = ?"/>
+		<property name="sqlInsert" value=" insert into tipo_producto (id_tipo_producto, nombre) values (?,?) "/>
+		<property name="sqlUpdate" value=" update tipo_producto set nombre = ? where id_tipo_producto = ? "/>
+	</bean>
+
+
+	<bean id="acRoles" class="mx.com.rosti.bd.AccesoComun">
+		<property name="findAll" value=" select id_rol, nombre_rol, descripcion from roles where id_rol != 1 "/>
+		<property name="findUnique" value=" select id_rol, nombre_rol, descripcion from roles where id_rol = ?"/>
+		<property name="sqlDelete" value=" delete from roles where id_rol = ?"/>
+		<property name="sqlInsert" value=" insert into roles (id_rol, nombre_rol, descripcion) values (?,?,?) "/>
+		<property name="sqlUpdate" value=" update roles set nombre_rol = ?, descripcion = ?  where id_rol = ? "/>
+	</bean>
+
+	<bean id="acProveedor" class="mx.com.rosti.bd.AccesoComun">
+		<property name="findAll" value=" select id_proveedor, nombre, descripcion, genera_codigo from proveedor "/>
+		<property name="findUnique" value=" select id_proveedor, nombre, descripcion, genera_codigo from proveedor where id_proveedor = ?"/>
+		<property name="sqlDelete" value=" delete from proveedor where id_proveedor = ?"/>
+		<property name="sqlInsert" value=" insert into proveedor (id_proveedor, nombre, descripcion, genera_codigo) values (?,?,?,?) "/>
+		<property name="sqlUpdate" value=" update proveedor set nombre = ?, descripcion = ?, genera_codigo = ?  where id_proveedor = ? "/>
+	</bean>
+
+	<bean id="acInventario" class="mx.com.rosti.bd.AccesoComun">
+		<property name="findAll" value=" select id_inventario, cantidad, entrada_salida, fecha_entrada, fecha_salida, hora_entrada, hora_salida, id_producto, id_proveedor, id_entrada_carga, id_salida_carga, remision, id_cliente from inventario "/>
+		<property name="findUnique" value=" select id_inventario, cantidad, entrada_salida, fecha_entrada, fecha_salida, hora_entrada, hora_salida, id_producto, id_proveedor, id_entrada_carga, id_salida_carga, remision, id_cliente from inventario where id_inventario = ? and id_producto = ? and id_proveedor = ? "/>
+		<property name="sqlDelete" value=" delete from inventario where id_inventario = ? and id_producto = ? and id_proveedor = ? "/>
+		<property name="sqlInsert" value=" insert into inventario (id_inventario, cantidad, entrada_salida, fecha_entrada, fecha_salida, hora_entrada, hora_salida, id_producto, id_proveedor, id_entrada_carga, id_salida_carga, remision, id_cliente, precio_unitario, cantidad_pagada) values (?,?,?,?,?,?,?,?,?,?,?,?,?,0,0) "/>
+		<property name="sqlUpdate" value=" update inventario set cantidad = ?, entrada_salida = ?, id_salida_carga = ?, remision = ?, id_cliente = ?, hora_salida = ?, fecha_salida = ? where id_inventario = ? and id_producto = ? and id_proveedor = ? "/>
+	</bean>
+
+
+	<bean id="acProducto" class="mx.com.rosti.bd.AccesoComun">
+		<property name="findAll" value=" select id_producto, nombre, id_tipo_producto, id_unidad, fecha_alta, id_proveedor from producto "/>
+		<property name="findUnique" value=" select id_producto, nombre, id_tipo_producto, id_unidad, fecha_alta, id_proveedor,costo, precio1, precio2, precio3, precio4, precio5 from producto where id_producto = ? and id_proveedor = ?"/>
+		<property name="sqlDelete" value=" delete from producto where id_producto = ? and id_proveedor = ? "/>
+		<property name="sqlInsert" value=" insert into producto (id_producto, nombre, id_tipo_producto, id_unidad, fecha_alta, id_proveedor, piezas, costo, precio1, precio2, precio3, precio4, precio5) values (?,?,?,?,?,?,?,?,?,?,?,?,?) "/>
+		<property name="sqlUpdate" value=" update producto set nombre = ?, id_tipo_producto = ?, id_unidad = ?, fecha_alta = ?, costo = ?, precio1 = ?, precio2 = ?, precio3 = ?, precio4 = ?, precio5 = ?  where id_producto = ? and id_proveedor = ? "/>
+	</bean>
+		
+	<bean id="acProductoAcumulado" class="mx.com.rosti.bd.AccesoComun">
+		<property name="sqlUpdate" value=" update inventario set precio_unitario = ?, costo_unitario = ? where id_producto = ? and id_proveedor = ? and id_salida_carga = ? "/>		
+	</bean>
+		
+</beans>

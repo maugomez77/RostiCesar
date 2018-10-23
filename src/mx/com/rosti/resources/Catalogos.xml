@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="DescripcionesGeneralesCatalog" class="mx.com.rosti.catalogo.especifico.DescripcionesGeneralesDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+	</bean>
+	
+	<bean id="IntegratorDAO" class="mx.com.rosti.catalogo.especifico.IntegratorDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+	</bean>
+	
+	<bean id="ReporteDAO" class="mx.com.rosti.catalogo.ReporteInventarioDAOImpl">
+		<property name="dataSource" ref="datasource"/>
+	</bean>
+	
+		
+</beans>

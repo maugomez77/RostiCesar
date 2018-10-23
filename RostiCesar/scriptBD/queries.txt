@@ -1,0 +1,27 @@
+select p.id_producto, p.nombre, tpro.nombre, u.nombre, sum(i.cantidad)
+  from inventario i, producto p, tipo_producto tpro, unidades u
+ where i.id_entrada_carga = 11
+   and i.id_producto = p.id_producto
+   and i.id_proveedor = p.id_proveedor
+   and p.id_tipo_producto = tpro.id_tipo_producto
+   and p.id_unidad = u.id_unidad
+group by p.id_producto, p.nombre, tpro.nombre, u.nombre
+
+
+select tpro.nombre, sum(i.cantidad)
+  from inventario i, producto p, tipo_producto tpro, unidades u
+ where i.id_entrada_carga = 11
+   and i.id_producto = p.id_producto
+   and i.id_proveedor = p.id_proveedor
+   and p.id_tipo_producto = tpro.id_tipo_producto
+   and p.id_unidad = u.id_unidad
+group by tpro.nombre
+
+select u.nombre, sum(i.cantidad)
+  from inventario i, producto p, tipo_producto tpro, unidades u
+ where i.id_entrada_carga = 11
+   and i.id_producto = p.id_producto
+   and i.id_proveedor = p.id_proveedor
+   and p.id_tipo_producto = tpro.id_tipo_producto
+   and p.id_unidad = u.id_unidad
+group by u.nombre

@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="datasource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/RostiDB"/>
+		<property name="lookupOnStartup" value="false"/>
+		<property name="cache" value="true"/>
+		<property name="proxyInterface" value="javax.sql.DataSource"/>
+	</bean>	
+	<!-- 
+	<bean id="MailClient" class="mx.com.rosti.email.MailClient">
+  	    <property name="session" ref="MailSession" />
+	</bean>	
+	
+	<bean id="MailSession" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="mail/PagoImpuestos" />
+	</bean>	
+	-->
+</beans>

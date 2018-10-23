@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>RostiCesar</display-name>
+
+	<servlet>
+    	<description></description>
+    	<servlet-name>ScanItem</servlet-name>
+    	<servlet-class>mx.com.rosti.servlets.ScanItem</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+  	</servlet>
+
+	<servlet>
+    	<description></description>
+    	<servlet-name>ScanItemVentas</servlet-name>
+    	<servlet-class>mx.com.rosti.servlets.ScanItemVentas</servlet-class>
+    	<load-on-startup>2</load-on-startup>
+  	</servlet>
+
+	<servlet>
+    	<description></description>
+    	<servlet-name>CrearEtiquetas</servlet-name>
+    	<servlet-class>mx.com.rosti.servlets.CrearEtiquetasServlet</servlet-class>
+    	<load-on-startup>3</load-on-startup>
+  	</servlet>
+
+
+	<servlet>
+    	<description></description>
+    	<servlet-name>GettingPaths</servlet-name>
+    	<servlet-class>mx.com.rosti.servlets.GettingPaths</servlet-class>
+    	<load-on-startup>4</load-on-startup>    	
+  	</servlet>
+
+	<servlet>
+    	<description></description>
+    	<servlet-name>ReadPDFServlet</servlet-name>
+    	<servlet-class>mx.com.rosti.servlets.ReadPDFServlet</servlet-class>
+    	<load-on-startup>5</load-on-startup>    	
+  	</servlet>
+
+	<servlet>
+    	<description></description>
+    	<servlet-name>ActualizaPrecios</servlet-name>
+    	<servlet-class>mx.com.rosti.servlets.ActualizaPreciosServlet</servlet-class>
+    	<load-on-startup>3</load-on-startup>
+  	</servlet>
+  	
+  	<servlet-mapping>
+    	<servlet-name>ScanItem</servlet-name>
+    	<url-pattern>/scan</url-pattern>
+  	</servlet-mapping>
+
+    <servlet-mapping>
+    	<servlet-name>ScanItemVentas</servlet-name>
+    	<url-pattern>/scanVentas</url-pattern>
+  	</servlet-mapping>
+
+	    <servlet-mapping>
+    	<servlet-name>CrearEtiquetas</servlet-name>
+    	<url-pattern>/crear</url-pattern>
+  	</servlet-mapping>
+
+    <servlet-mapping>
+    	<servlet-name>ReadPDFServlet</servlet-name>
+    	<url-pattern>/ReadPDFServlet</url-pattern>
+  	</servlet-mapping>
+  	
+  	<servlet-mapping>
+    	<servlet-name>ActualizaPrecios</servlet-name>
+    	<url-pattern>/ActualizaPrecios</url-pattern>
+  	</servlet-mapping>
+  	
+  	<session-config>
+  		<session-timeout>-1</session-timeout>
+  	</session-config>
+  	
+  	
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+  
+	<resource-ref>
+        <description>
+		    Resource reference to a factory for javax.mail.Session
+		    instances that may be used for sending electronic mail
+		    messages, preconfigured to connect to the appropriate
+		    SMTP server.
+  		</description>
+  		<res-ref-name>mail/Session</res-ref-name>
+  		<res-type>javax.mail.Session</res-type>
+  		<res-auth>Container</res-auth>
+	</resource-ref>
+	
+</web-app>

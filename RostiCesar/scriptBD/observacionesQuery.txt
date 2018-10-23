@@ -1,0 +1,24 @@
+//este query trata de mostrar la relacion entre producto e inventario
+//por si llegara a pasar que para un mismo producto, con mismo proveedor existieran diversos tipos de producto y unidades
+//pero esto no seria muy congruente.
+
+select distinct i.id_producto, i.id_proveedor, pro.id_tipo_producto, pro.id_unidad
+ from inventario i, producto pro
+ where i.id_producto = pro.id_producto
+   and i.id_proveedor = pro.id_proveedor
+   
+
+
+//este query lo muestra mejor.   
+select pro.id_producto, pro.id_proveedor, pro.id_tipo_producto, pro.id_unidad
+ from producto pro
+order by pro.id_producto, pro.id_proveedor, pro.id_tipo_producto, pro.id_unidad
+
+
+select p.id_producto, p.id_proveedor, concat(p.nombre, ' -- ', tip.nombre, ' -- ', uni.nombre, ' -- ', prov.nombre)
+  from producto p, tipo_producto tip, unidades uni, proveedor prov
+ where p.id_proveedor = prov.id_proveedor
+   and tip.id_tipo_producto = p.id_tipo_producto
+   and uni.id_unidad = p.id_unidad
+   and prov.genera_codigo = 'Y'
+   

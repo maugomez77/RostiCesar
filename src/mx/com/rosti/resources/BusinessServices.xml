@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">	
+	
+	<bean id="ParametrizedDAO" class="mx.com.rosti.report.ParametrizedDAOImpl">
+		<property name="dataSource"  ref="datasource"/>
+		<property name="sqlParam"    ref="sParam"/>
+	</bean>
+	
+	<bean id="sParam" class="mx.com.rosti.report.SQLParametrized">
+	 	<property name="separator" value="-"/>
+		<property name="dataType" value="Integer-Integer-Integer"/>
+		<property name="dataColumn" value="43-44-45"/>
+		<property name="query" value=" select * from periodo where id_periodo in (?, ?, ?) "/>
+	</bean>
+	
+</beans>

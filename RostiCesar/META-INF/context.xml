@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/RostiCesar">
+
+  <Resource name="jdbc/RostiDB" auth="Container"
+            type="javax.sql.DataSource" username="root" password=""
+            driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://127.0.0.1/rosti"
+            maxActive="20" maxIdle="4"/>
+            
+             <Resource name="mail/Session" 
+                     auth="Container"
+                     type="javax.mail.Session"
+                     mail.smtp.host="localhost"/>
+  
+</Context>
